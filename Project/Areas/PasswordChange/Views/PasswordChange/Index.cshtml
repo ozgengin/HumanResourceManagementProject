@@ -1,0 +1,73 @@
+﻿@using Project.Models
+@model PasswordChangeViewModel
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<div class="row">
+    <div class="col-md-6">
+        <form id="change-password-form" asp-action="Index" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-floating">
+                <input asp-for="OldPassword" class="form-control" id="old-password" autocomplete="current-password" aria-required="true" />
+                <label asp-for="OldPassword" class="form-label"></label>
+                <span asp-validation-for="OldPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="NewPassword" class="form-control" id="new-password" autocomplete="new-password" aria-required="true" />
+                <label asp-for="NewPassword" class="form-label"></label>
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input asp-for="ConfirmPassword" class="form-control" id="cnf-password" autocomplete="new-password" aria-required="true" />
+                <label asp-for="ConfirmPassword" class="form-label"></label>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </div>
+            <div class="mt-3">
+
+            <span class="input-group-text" id="togglePassword">
+                <i class="fa fa-eye-slash float-right" style="margin-top:-15px; margin-right:30px; cursor:pointer" aria-hidden="true">Show</i>
+            </span>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">            
+                Update password
+                </button>
+        </form>
+    </div>
+</div>
+
+<script src="~/css/jquery/jquery.min.js"></script>
+<script src="~/js/popper.js/umd/popper.min.js"></script>
+<script src="~/js/bootstrap/js/bootstrap.min.js"></script>
+
+<script>
+    var oldPasswordField = document.getElementById("old-password");
+    var newPasswordField = document.getElementById("new-password");
+    var cnfPasswordField = document.getElementById("cnf-password");
+    var toggleButton = document.getElementById("togglePassword");
+    var isPasswordVisible = false;
+
+    toggleButton.addEventListener("click", function () {
+        if (isPasswordVisible) {
+            oldPasswordField.setAttribute("type", "password");
+            toggleButton.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true">Hide</i>';
+        } else {
+            oldPasswordField.setAttribute("type", "text");
+            toggleButton.innerHTML = '<i class="fa fa-eye" aria-hidden="true">Show</i>';
+        }
+         if (isPasswordVisible) {
+            newPasswordField.setAttribute("type", "password");
+            toggleButton.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true">Hide</i>';
+        } else {
+            newPasswordField.setAttribute("type", "text");
+            toggleButton.innerHTML = '<i class="fa fa-eye" aria-hidden="true">Show</i>';
+        }
+        if (isPasswordVisible) {
+            cnfPasswordField.setAttribute("type", "password");
+            toggleButton.innerHTML = '<i class="fa fa-eye-slash" aria-hidden="true">Hide</i>';
+        } else {
+            cnfPasswordField.setAttribute("type", "text");
+            toggleButton.innerHTML = '<i class="fa fa-eye" aria-hidden="true">Show</i>';
+        }
+        isPasswordVisible = !isPasswordVisible;
+    });
+   
+</script>
+

@@ -1,0 +1,13 @@
+﻿@using Infrastructure.Identity;
+@using Microsoft.AspNetCore.Identity;
+@model ApplicationUser
+
+
+<form method="POST" asp-action="Forgot">
+    <div class="form-group">
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" type="text" class="form-control" id="email" name="email" required />
+        <span asp-validation-for="Mail" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Confirm Email</button>
+</form>

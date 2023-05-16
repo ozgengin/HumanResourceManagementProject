@@ -1,0 +1,57 @@
+﻿@using Infrastructure.Identity
+@using Microsoft.AspNetCore.Identity
+@inject UserManager<ApplicationUser> _userManager;
+@model List<ApplicationUser>
+
+
+<h1>ROLE LIST</h1>
+
+<table class="table table-hover">
+
+    <thead>
+        <tr>
+            <td>
+                User name
+            </td>
+            <td></td>
+            <td></td>
+        </tr>
+    </thead>
+
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    @{
+                        if (await _userManager.IsInRoleAsync(item, "Yönetici"))
+                        {
+                            <td class="text-success">
+                                Administrator Role Available.
+                            </td>
+                            <td>
+                                <a class="btn btn-danger" asp-action="RolSil" asp-route-id="@item.Id">Delete admin role
+                                </a>
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td>
+                                <a class="btn btn-success" asp-action="RolEkle" asp-route-id="@item.Id">Add admin role
+                                </a>
+                            </td>
+                            <td class="text-danger">
+                                No Administrator Role.
+                            </td>
+
+                        }
+                    }
+
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>

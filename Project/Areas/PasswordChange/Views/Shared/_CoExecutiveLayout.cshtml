@@ -1,0 +1,158 @@
+﻿@using Infrastructure.Identity;
+@using Microsoft.AspNetCore.Identity;
+@inject SignInManager<ApplicationUser> SignInManager
+<!DOCTYPE html>
+<html class="h-100" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>İnsan Kaynakları Yönetim Platformu</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="~/template/assets/img/favicon.png" rel="icon">
+    <link href="~/template/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.gstatic.com" rel="preconnect">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|       Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="~/template/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/template/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="~/template/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+    <link href="~/template/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+
+
+    <!-- Template Main CSS File -->
+    <link href="~/template/assets/css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <!-- ======= Header ======= -->
+        <header id="header" class="header fixed-top d-flex align-items-center" style="background-color:#a2a8d3">
+
+            <div class="d-flex align-items-center justify-content-between">
+                <a asp-controller="Admin" asp-action="Index" asp-area="admin" class="logo d-flex align-items-center">
+                    <img src="~/img/hr.jpg" alt="">
+                    <span class="d-none d-lg-block">HR Platform</span>
+                </a>
+                <i class="bi bi-list toggle-sidebar-btn"></i>
+            </div><!-- End Logo -->
+
+
+            <nav class="header-nav ms-auto">
+                <ul class="d-flex align-items-center">
+
+                    <li class="nav-item d-block d-lg-none">
+                        <a class="nav-link nav-icon search-bar-toggle " href="#">
+                            <i class="bi bi-search"></i>
+                        </a>
+                    </li><!-- End Search Icon-->
+
+                    <partial name="_LoginPartial" />
+
+                </ul>
+            </nav>
+
+        </header>
+
+        <!-- ======= Sidebar ======= -->
+        <aside id="sidebar" class="sidebar" style="background-color:#e7eaf6">
+
+            <ul class="sidebar-nav" id="sidebar-nav">
+
+                <li class="nav-item">
+
+                    <a class="nav-link" asp-controller="Admin" asp-action="Index" asp-area="admin">
+                        <i class="bi bi-person"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#account-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-person-vcard"></i><span>Account</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="account-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a asp-action="Details" asp-controller="Admin" asp-area="admin">
+                                <i class="bi bi-circle"></i><span>Details</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="Edit" asp-controller="Admin" asp-area="admin">
+                                <i class="bi bi-circle"></i><span>Edit</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link collapsed" data-bs-target="#employee-nav" data-bs-toggle="collapse" href="#">
+                        <i class="bi bi-person-workspace"></i><span>Employee</span><i class="bi bi-chevron-down ms-auto"></i>
+                    </a>
+                    <ul id="employee-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                        <li>
+                            <a asp-action="Index" asp-controller="Employee" asp-area="CompanyExecutive">
+                                <i class="bi bi-circle"></i><span>Employee List</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a asp-action="Create" asp-controller="Employee" asp-area="CompanyExecutive">
+                                <i class="bi bi-circle"></i><span>Add Employee</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </li>
+
+            </ul>
+
+        </aside>
+    }
+    @if (!SignInManager.IsSignedIn(User))
+    { <header id="header" class="header fixed-top d-flex align-items-center" style="background-color:#a2a8d3">
+        <div class="d-flex align-items-center justify-content-center">
+            <a asp-controller="Admin" asp-action="Index" asp-area="admin" class="logo d-flex align-items-center">
+                <img src="~/img/hr.jpg" alt="">
+                <span class="d-none d-lg-block">HR Platform</span>
+            </a>
+            
+        </div>
+        </header>
+    }
+
+        <main id="main" class="main">
+
+            @RenderBody()
+        </main>
+        <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer fixed-bottom">
+        <div class="container">
+            <div class="copyright">
+                &copy; Copyright <strong><span>HR Platform</span></strong>. All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <script src="~/template/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="~/template/assets/js/main.js"></script>
+
+        @section Scripts {
+        @RenderSection("Scripts", required: false)
+    }
+
+   
+</body>
+</html>

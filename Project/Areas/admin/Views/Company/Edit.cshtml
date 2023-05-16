@@ -1,0 +1,61 @@
+﻿@using ApplicationCore.Entities
+@using Project.Areas.admin.Models
+@model EditCompanyViewModel
+@{
+	
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Company Update</h1>
+
+<div class="card">
+	<div class="card-header">
+		<h1> Update Information</h1>
+	</div>
+    <div class="col-sm-6 mt-3">
+		<div class="card-body">
+			<form asp-action="Edit" asp-controller="Company" method="post" enctype="multipart/form-data">
+			<div class="form-group">
+				<label asp-for="Phone"> Phone:</label>
+				<input asp-for="Phone" class="form-control" />
+				<span asp-validation-for="Phone" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<label asp-for="Adress"> Address:</label>
+				<input asp-for="Adress" class="form-control" />
+					<span asp-validation-for="Adress" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<label asp-for="Image"> Logo:</label>
+				<input type="file" asp-for="Image" class="form-control" />
+					<span asp-validation-for="Image" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<label asp-for="Email"> Email:</label>
+				<input asp-for="Email" class="form-control" />
+					<span asp-validation-for="Email" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<label asp-for="EmployeeCount"> Employee Count:</label>
+				<input asp-for="EmployeeCount" class="form-control" />
+					<span asp-validation-for="EmployeeCount" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<label asp-for="ContractStartDate"> Contract Start Date:</label>
+				<input asp-for="ContractStartDate" class="form-control" type="date"/>
+					<span asp-validation-for="ContractStartDate" class="text-danger"></span>
+			</div>
+			<div class="form-group mt-2">
+				<label asp-for="ContractEndDate"> Contract End Date:</label>
+				<input asp-for="ContractEndDate" class="form-control" type="date"/>
+					<span asp-validation-for="ContractEndDate" class="text-danger"></span>
+			</div>
+			<div class="text-end mt-3">
+				<button type="submit" class="btn btn-primary">Update</button>
+			</div>
+			
+		</form>
+	</div>
+	</div>
+
+</div>

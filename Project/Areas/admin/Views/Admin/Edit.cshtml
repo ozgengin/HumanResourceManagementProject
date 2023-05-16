@@ -1,0 +1,60 @@
+﻿@using Infrastructure.Identity
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@model EditViewModel
+
+<div class="pagetitle">
+    <h1>Management Platform</h1>
+</div>
+
+<section class="section">
+    <div class="row">
+        <!-- Details -->
+
+        <div class="col-xl-8">
+
+            <div class="card">
+                <div class="card-body pt-4">
+                    
+                    <ul class="nav nav-tabs nav-tabs-bordered">
+                        <li class="nav-item">
+                            <button class="nav-link active">Edit</button>
+                        </li>
+                    </ul>
+                   
+
+                        <div class="fade show active">
+
+                        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                                <div class="row mt-4 mx-2">
+                                    <div class="col-xl-6">
+                                        <div class="row">
+                                            <input type="file" class="form-control" asp-for="@Model.Image" />
+                                        <span asp-validation-for="Image" class="text-danger"></span>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <div class="col-lg-3 col-md-4 label fw-semibold">Address:</div>
+                                            <input class="col-lg-9 col-md-8 form-control" type="text" asp-for="@Model.Address" />
+                                        <span asp-validation-for="Address" class="text-danger"></span>
+                                        </div>
+
+                                        <div class="row mt-2">
+                                            <div class="col-lg-3 col-md-4 label fw-semibold">Phone:</div>
+                                            <input class="col-lg-9 col-md-8 form-control" type="text" asp-for="@Model.Phone" />
+                                        <span asp-validation-for="Phone" class="text-danger"></span>
+                                        </div>
+                                        <div class="row mt-2">
+                                            <button type="submit" class="btn btn-outline-primary mt-4 px-4">Save</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
